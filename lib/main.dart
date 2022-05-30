@@ -69,11 +69,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8.0)))),
             ),
             TextButton(onPressed: () async {
-              print(textFieldController.text);
-              String response = await HttpService.sendRequest("http://34.234.170.145:5000/request", textFieldController.text);
-              setState(() {
-                resultText = response;
-              });
+              try {
+                String response = await HttpService.sendRequest("http://34.234.170.145:5000/request", textFieldController.text);
+                setState(() {
+                  resultText = response;
+                });
+              } catch (e) {
+                setState(() {
+                  resultText = "Failed";
+                });
+              }
             }, child: const Text("Submit")),
             Text(resultText),
           ],
