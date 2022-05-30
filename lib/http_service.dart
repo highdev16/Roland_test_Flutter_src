@@ -6,9 +6,9 @@ class HttpService {
     var headers = {
       'Content-Type': 'application/json',
     };
-    var request = http.Request('POST', Uri.parse('http://192.168.1.119:5000/request'));
+    var request = http.Request('POST', Uri.parse(postsURL));
     request.body = json.encode({
-      "value": "test"
+      "value": value
     });
     request.headers.addAll(headers);
 
